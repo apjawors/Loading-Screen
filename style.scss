@@ -1,0 +1,82 @@
+@import url(https://fonts.googleapis.com/css?family=Nunito:400,300);
+
+body {
+  background: #090d04;
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  width: 240px;
+  height: 151px;
+  margin-left: calc(50% - 128px);
+}
+
+#c1 {
+  transform: rotate(180deg);  // Rotates top container to make bars start from the bottom
+  margin-top: calc(50vh - 202px);
+}
+
+#c2 {
+  margin-top: -2px;
+  transform: rotateY(180deg); // Rotates bottom container to connect these bars 
+}                             // with the bars in container 1. Also gives every bar the
+                              // appearance that they're shrinking and growing from the center
+#c3 {
+  height: 40px;
+  text-align: center;
+}
+
+.bar {
+  width: 15px;
+  background: #66b104;
+  border-radius: 0 0 5px 5px;
+  float: left;
+  border-radius-left: 20px;
+  transition: background .2s, transform .2s;
+  height: 30px;
+}
+
+.l {
+  display: inline;
+  font-size: 40px;
+  font-family: "Nunito";
+  color: #090d04;
+  transition: transform .3s;
+}
+
+.l:hover {
+  transform: scale(1.5);
+}
+
+@for $i from 1 through 7 {            // Fade animation for the "LOADING" text
+  .l:nth-child(#{$i}) {
+   animation: fade 7s infinite linear;
+   animation-delay: ($i)+s; 
+  }
+}
+
+@for $i from 1 through 16 {                      
+  .bar:nth-child(#{$i}) {
+    animation: grow random(16)+s infinite linear;
+  }
+}
+
+@keyframes fade {
+  0%    {display: none}
+  25%   {color: #fff}
+  60%   {color: #a50448}
+  85%  {display: none}
+}
+
+@keyframes grow {
+  0%   {background: #66b104;}
+  
+  35%  {background: #66b104;}
+  
+  50%  {height: (random(100) + 50) + px;
+        background: #a50448;}
+  
+  65%  {background: #66b104}
+}
+
